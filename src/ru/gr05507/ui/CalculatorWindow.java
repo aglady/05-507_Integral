@@ -3,7 +3,8 @@ package ru.gr05507.ui;
 
 import ru.gr05507.application.CalculationService;
 import ru.gr05507.domain.Calculation;
-import ru.gr05507.domain.IntegrationMethod;
+import ru.gr05507.domain.MethodRealisation;
+import ru.gr05507.domain.MethodsRealisation;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +16,7 @@ public class CalculatorWindow extends JFrame implements CalculatorView {
     private final JTextField lowerField = new JTextField(10);
     private final JTextField upperField = new JTextField(10);
     private final JTextField intervalsField = new JTextField("100", 10);
-    private final JComboBox<IntegrationMethod> methodBox = new JComboBox<>(IntegrationMethod.values());
+    private final JComboBox<MethodRealisation> methodBox = new JComboBox<>(MethodsRealisation.standard().toArray(new MethodRealisation[0]));
     private final JButton calculateButton = new JButton("Вычислить");
     private final JButton deleteButton = new JButton("Удалить");
     private final DefaultListModel<Calculation> listModel = new DefaultListModel<>();
@@ -91,7 +92,7 @@ public class CalculatorWindow extends JFrame implements CalculatorView {
     @Override public String getLowerText()          { return lowerField.getText(); }
     @Override public String getUpperText()          { return upperField.getText(); }
     @Override public String getIntervalsText()      { return intervalsField.getText(); }
-    @Override public IntegrationMethod getMethod()  { return (IntegrationMethod) methodBox.getSelectedItem(); }
+    @Override public MethodRealisation getMethod()  { return (MethodRealisation) methodBox.getSelectedItem(); }
     @Override public Calculation getSelected()      { return calculationList.getSelectedValue(); }
 
     @Override
