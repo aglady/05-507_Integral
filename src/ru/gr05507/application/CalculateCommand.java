@@ -35,6 +35,6 @@ public class CalculateCommand implements Command{
 
     @Override
     public void undo() {
-
+        service.delete(calculation);
     }
 }
