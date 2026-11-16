@@ -18,8 +18,11 @@ public class CalculationService {
     public Calculation calculate(String formula, double lower, double upper,
                                  int intervals, MethodRealisation method) {
         DoubleUnaryOperator f = parser.parse(formula);
-        double result = Integrator.integrate(f, lower, upper, intervals, method);
-        Calculation calculation = new Calculation(formula, lower, upper, intervals, method, result);
+        var timedStrategy = new TimedIntegralStrategy(method.strategy());
+        var timedMethod = new MethodRealisation(method.name(), timedStrategy);
+        double result = Integrator.integrate(f, lower, upper, intervals, timedMethod);
+        long elapsed = timedStrategy.getElapsed();
+        Calculation calculation = new Calculation(formula, lower, upper, intervals, method, result, elapsed);
         repository.save(calculation);
         return calculation;
     }

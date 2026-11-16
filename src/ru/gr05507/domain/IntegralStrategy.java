@@ -7,3 +7,4 @@ import java.util.function.DoubleUnaryOperator;
 public interface IntegralStrategy {
     double calculateOfIntegral(DoubleUnaryOperator f, double a, double b, int n);
 }
+
